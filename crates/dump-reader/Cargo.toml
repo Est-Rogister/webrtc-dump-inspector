@@ -1,0 +1,13 @@
+[package]
+name = "dump-reader"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+adapter-internals = { path = "../adapter-internals" }
+adapter-rtcstats = { path = "../adapter-rtcstats" }
+flate2.workspace = true
+rtc-domain = { path = "../rtc-domain" }
+thiserror.workspace = true
+

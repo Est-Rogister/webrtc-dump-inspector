@@ -1,0 +1,29 @@
+[workspace]
+members = [
+  "apps/desktop/src-tauri",
+  "crates/rtc-domain",
+  "crates/adapter-rtcstats",
+  "crates/adapter-internals",
+  "crates/dump-reader",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+version = "0.1.0"
+
+[workspace.dependencies]
+chrono = "0.4"
+flate2 = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+uuid = { version = "1", features = ["v4"] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true
