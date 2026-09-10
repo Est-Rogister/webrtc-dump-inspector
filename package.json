@@ -1,7 +1,7 @@
 {
   "name": "webrtc-analyzer-workspace",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "workspaces": [
     "apps/desktop"
   ],
@@ -13,4 +13,3 @@
     "tauri:build": "npm run tauri:build --workspace=@webrtc-analyzer/desktop"
   }
 }
-

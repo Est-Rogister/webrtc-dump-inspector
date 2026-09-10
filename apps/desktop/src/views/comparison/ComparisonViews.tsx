@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
-import type { ConnectionAnalysis, WorkspaceSession, WorkspaceView } from "./types";
+import type { ConnectionAnalysis, WorkspaceSession, WorkspaceView } from "@/types";
 
 const ComparisonStatsCharts = lazy(() => import("./ComparisonStatsCharts"));
 

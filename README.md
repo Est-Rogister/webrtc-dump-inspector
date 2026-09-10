@@ -14,6 +14,8 @@ RTC Inspector 使用 Tauri 2 和 Rust 在本机解析 `webrtc-internals`、`rtcs
 - **趋势图表**：展示发送/接收码率、丢包、帧率、RTT 和带宽变化
 - **Session 聚合**：将同一通话的多份日志合并为一个分析 Session，并对重复数据去重
 - **Session 对比**：并排比较两个 Session 的概览、事件、SDP、ICE 和 Stats
+- **后台导入任务**：批量文件由 Rust 后台队列解析，提供文件级进度和取消操作
+- **受控图表数据**：Session 和原始 Stats 保存在 Rust，图表查询限制返回点数
 - **离线处理**：Rust parser 在本地运行，不依赖分析服务或云端接口
 
 ## Session 对比
@@ -67,16 +69,16 @@ Rust dump-reader
       +-- adapter-internals
       |
       v
-统一 RTC Domain Model
+统一 RTC Domain Model + Rust Session Store
       |
       v
-Session 聚合与去重
+来源聚合、去重与 Stats 降采样
       |
       v
 React 工作台 + ECharts
 ```
 
-Rust 负责文件读取、gzip 解压、格式识别、解析和基础连接分析。React 前端负责 Session 工作区、数据源聚合、单 Session 查看和跨 Session 对比。
+Rust 负责后台导入任务、文件读取、gzip 解压、格式识别、解析、Session 存储、来源聚合和基础连接分析。React 前端只保存当前视图、筛选条件等界面状态，并负责单 Session 查看和跨 Session 对比。
 
 ## 隐私
 
@@ -154,18 +156,27 @@ Windows 需要在 Windows 环境中执行相同命令，生成对应的 NSIS 或
 ## 项目结构
 
 ```text
-apps/desktop/                     React、TypeScript、Vite 前端
+apps/desktop/                     桌面应用工程
+apps/desktop/src/app/             应用壳、全局状态和导航配置
+apps/desktop/src/components/      可复用 UI 与工作区布局组件
+apps/desktop/src/services/        Tauri commands、文件选择和任务轮询
+apps/desktop/src/types/           RTC、Session 和桌面任务类型
+apps/desktop/src/views/           单 Session、对比及后续业务页面
+apps/desktop/src/styles/          应用样式
+apps/desktop/src/test/            前端测试初始化
 apps/desktop/src-tauri/           Tauri 桌面入口、命令和应用资源
 assets/screenshots/               不含敏感地址的界面截图
 crates/rtc-domain/                WebRTC 领域模型与连接分析
 crates/dump-reader/               文件读取、gzip 解压和格式分派
+crates/session-store/             多 Session/Source 存储、聚合和查询
 crates/adapter-rtcstats/          rtcstats dump 解析器
 crates/adapter-internals/         webrtc-internals dump 解析器
 ```
 
 ## 当前边界
 
-- Session 保存在应用内存中，退出应用后不会恢复
+- Session 保存在 Rust 进程内存中，退出应用后不会恢复
 - 一次对比选择一个 Baseline 和一个 Target
 - Stats 按 Session 相对起点对齐，不执行跨设备绝对时钟校正
+- 当前取消在文件边界生效，不会中断正在解析的单个文件
 - 外部 Chrome CDP、内嵌 H5 SDK 和 WebRTC 重协商链路分析尚未接入

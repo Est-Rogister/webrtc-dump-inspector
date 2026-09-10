@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { AlertTriangle } from "lucide-react";
-import type { ConnectionAnalysis, WorkspaceSession, WorkspaceView } from "./types";
+import type { ConnectionAnalysis, WorkspaceSession, WorkspaceView } from "@/types";
 
 const StatsCharts = lazy(() => import("./StatsCharts"));
 

@@ -377,6 +377,47 @@ button:disabled {
   font-weight: 670;
 }
 
+.import-progress {
+  position: absolute;
+  top: 86px;
+  right: 24px;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: minmax(140px, 240px) 140px auto 30px;
+  min-height: 52px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px 8px 13px;
+  border: 1px solid #cbd8d1;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgb(25 43 34 / 14%);
+}
+
+.import-progress > div {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.import-progress strong {
+  color: #203129;
+  font-size: 12px;
+}
+
+.import-progress span {
+  overflow: hidden;
+  color: #68746e;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.import-progress progress {
+  width: 140px;
+  accent-color: #147a4b;
+}
+
 .toolbar-actions {
   gap: 10px;
 }

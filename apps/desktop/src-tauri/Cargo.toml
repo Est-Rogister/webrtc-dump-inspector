@@ -16,6 +16,7 @@ tauri-build = { version = "2", features = [] }
 [dependencies]
 dump-reader = { path = "../../../crates/dump-reader" }
 rtc-domain = { path = "../../../crates/rtc-domain" }
+session-store = { path = "../../../crates/session-store" }
 serde = { version = "1", features = ["derive"] }
 tauri = { version = "2", features = [] }
 tauri-plugin-dialog = "2"

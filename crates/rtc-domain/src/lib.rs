@@ -276,6 +276,8 @@ pub struct ConnectionStates {
     pub connection: Option<String>,
     pub ice_connection: Option<String>,
     pub ice_gathering: Option<String>,
+    #[serde(default)]
+    pub ice_gathering_inferred: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]

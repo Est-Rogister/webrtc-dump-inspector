@@ -4,7 +4,7 @@ version = 4
 
 [[package]]
 name = "adapter-internals"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "chrono",
  "rtc-domain",
@@ -14,7 +14,7 @@ dependencies = [
 
 [[package]]
 name = "adapter-rtcstats"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "rtc-domain",
  "serde_json",
@@ -729,7 +729,7 @@ checksum = "f678cf4a922c215c63e0de95eb1ff08a958a81d47e485cf9da1e27bf6305cfa5"
 
 [[package]]
 name = "dump-reader"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "adapter-internals",
  "adapter-rtcstats",
@@ -2572,7 +2572,7 @@ dependencies = [
 
 [[package]]
 name = "rtc-domain"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "serde",
  "serde_json",
@@ -2580,11 +2580,12 @@ dependencies = [
 
 [[package]]
 name = "rtc-inspector"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "dump-reader",
  "rtc-domain",
  "serde",
+ "session-store",
  "tauri",
  "tauri-build",
  "tauri-plugin-dialog",
@@ -2864,6 +2865,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "170fb83ab34de17dc69aa7c67482b22218ddb85da56546f9bd6b929e32a05930"
 dependencies = [
  "stable_deref_trait",
+]
+
+[[package]]
+name = "session-store"
+version = "0.2.0"
+dependencies = [
+ "rtc-domain",
+ "serde",
+ "serde_json",
+ "uuid",
 ]
 
 [[package]]

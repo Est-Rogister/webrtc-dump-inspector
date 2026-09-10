@@ -8,7 +8,7 @@ import {
   TooltipComponent,
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
-import type { StatsPoint } from "./types";
+import type { StatsPoint } from "@/types";
 
 echarts.use([
   LineChart,

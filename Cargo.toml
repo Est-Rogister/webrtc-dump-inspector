@@ -5,13 +5,14 @@ members = [
   "crates/adapter-rtcstats",
   "crates/adapter-internals",
   "crates/dump-reader",
+  "crates/session-store",
 ]
 resolver = "2"
 
 [workspace.package]
 edition = "2021"
 license = "MIT"
-version = "0.1.0"
+version = "0.2.0"
 
 [workspace.dependencies]
 chrono = "0.4"
